@@ -10,7 +10,8 @@ Create an app using React Router
 
 # Requirements
 
-    - Install Linter and Standard
+    - ✅ Install Linter and Standard
+    - ✅ Create a way to develop MPAs (Multiple Page Application) all resources will be downloaded again on each page change
     - Create a way to develop SPAs (Single Page Application)
     - Allow navigation between pages with back button
     - Create a Link component to make it declarative
