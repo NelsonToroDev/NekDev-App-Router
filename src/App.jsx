@@ -1,14 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
-import { useEffect } from 'react'
-
-const NAVIGATION_EVENT = 'pushstate'
+import { EVENTS } from './consts.js'
 
 function navigate(href) {
   window.history.pushState({}, '', href)
 
   // create a custom event to notify that URL was changed
-  const navigationEvent = new Event(NAVIGATION_EVENT)
+  const navigationEvent = new Event(EVENTS.PUSHEVENT)
   window.dispatchEvent(navigationEvent) // Trigger our custom event
 }
 
@@ -33,7 +31,7 @@ function AboutPage() {
         />
         <p>Hello this a React Router clone</p>
       </div>
-      <button onClick={ () => navigate('/') }>Go to home</button>
+      <button onClick={() => navigate('/')}>Go to home</button>
     </>
   )
 }
@@ -46,10 +44,12 @@ function App() {
       setCurrentPath(window.location.pathname)
     }
 
-    window.addEventListener(NAVIGATION_EVENT, onLocationChange)
+    window.addEventListener(EVENTS.PUSHEVENT, onLocationChange)
+    window.addEventListener(EVENTS.POPEVENT, onLocationChange)
 
     return () => {
-      window.removeEventListener(NAVIGATION_EVENT, onLocationChange)
+      window.removeEventListener(EVENTS.PUSHEVENT, onLocationChange)
+      window.removeEventListener(EVENTS.POPEVENT, onLocationChange)
     }
   }, [])
 
