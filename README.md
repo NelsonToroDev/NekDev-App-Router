@@ -20,5 +20,6 @@ Create an app using React Router
     - ✅ Suppport routes with parameters
     - ✅ <Route /> Component to make it declarative
     - ✅ Lazy loading for routes
+    - ✅ Support i18n
     - Testing
     - Publish the package on NPM

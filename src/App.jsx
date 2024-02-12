@@ -16,6 +16,11 @@ const LazySearchPage = lazy(() => import('./pages/Search.jsx'))
 
 const appRoutes = [
   {
+    // Internationalization support
+    path: '/:lang/about',
+    Component: LazyAboutPage
+  },
+  {
     path: '/search/:query',
     Component: LazySearchPage
   }
