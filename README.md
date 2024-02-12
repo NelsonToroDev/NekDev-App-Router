@@ -15,7 +15,7 @@ Create an app using React Router
     - ✅ Create a way to develop SPAs (Single Page Application) resources will be downloaded only on first page required
     - ✅ Allow navigation between pages with back button
     - ✅ Create a Link component to make it declarative
-    - Create a Router component to make it more declarative
+    - ✅ Create a Router component to make it more declarative
     - Support a default route (404)
     - Suppport routes with parameters
     - <Route /> Component to make it declarative
