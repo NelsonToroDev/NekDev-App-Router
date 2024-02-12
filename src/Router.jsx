@@ -34,7 +34,8 @@ export default function Router({
     return isRoute ? props : null
   })
 
-  const routeToUse = routes.concat(routesFromChildren)
+  // filter undefined and nulls references from the array
+  const routeToUse = routes.concat(routesFromChildren).filter(Boolean)
 
   const Page = routeToUse.find(({ path }) => {
     if (path === currentPath) return true
