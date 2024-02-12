@@ -16,7 +16,7 @@ Create an app using React Router
     - ✅ Allow navigation between pages with back button
     - ✅ Create a Link component to make it declarative
     - ✅ Create a Router component to make it more declarative
-    - Support a default route (404)
+    - ✅ Support a default route (404)
     - Suppport routes with parameters
     - <Route /> Component to make it declarative
     - Lazy loading for routes
