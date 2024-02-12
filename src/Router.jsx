@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import { EVENTS } from './consts'
 import { match } from 'path-to-regexp'
+import { Children } from 'react'
 
 export default function Router({
+  children,
   routes = [],
-  defaultComponent: DefaultComponent = () => <h1>404</h1>
+  defaultComponent: DefaultComponent = () => <h1>Error 404</h1>
 }) {
   const [currentPath, setCurrentPath] = useState(window.location.pathname)
 
@@ -24,7 +26,17 @@ export default function Router({
 
   let routeParams = {}
 
-  const Page = routes.find(({ path }) => {
+  // add routes from children <Route /> component
+  const routesFromChildren = Children.map(children, ({ props, type }) => {
+    // children.props is an object in the form {path: '/', Component: f }
+    const { name } = type
+    const isRoute = name === 'Route'
+    return isRoute ? props : null
+  })
+
+  const routeToUse = routes.concat(routesFromChildren)
+
+  const Page = routeToUse.find(({ path }) => {
     if (path === currentPath) return true
 
     // We Used path-to-regex to dectect dynamic routes
@@ -36,9 +48,11 @@ export default function Router({
     // /search/:query => /search/sometext => { query: 'sometext'}
     routeParams = matched.params
     return true
-  })?.component
+  })?.Component
 
-  return Page
-    ? <Page routeParams={routeParams} />
-    : <DefaultComponent routeParams={routeParams} />
+  return Page ? (
+    <Page routeParams={routeParams} />
+  ) : (
+    <DefaultComponent routeParams={routeParams} />
+  )
 }
