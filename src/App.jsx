@@ -1,25 +1,35 @@
+import { lazy, Suspense } from 'react'
 import './App.css'
-import HomePage from './pages/Home.jsx'
-import AboutPage from './pages/About.jsx'
+ // static import it will be downloaded even when it won't be required
+// import HomePage from './pages/Home.jsx'
+// import AboutPage from './pages/About.jsx'
+// import Page404 from './pages/Page404.jsx'
+// import SearchPage from './pages/Search.jsx'
 import Router from './Router.jsx'
-import Page404 from './pages/Page404.jsx'
-import SearchPage from './pages/Search.jsx'
 import Route from './pages/Route.jsx'
+
+// Lazy loading imports
+const LazyHomePage = lazy(() => import('./pages/Home.jsx')) // dynamic import return a Promise
+const LazyAboutPage = lazy(() => import('./pages/About.jsx'))
+const LazyPage404 = lazy(() => import('./pages/Page404.jsx'))
+const LazySearchPage = lazy(() => import('./pages/Search.jsx'))
 
 const appRoutes = [
   {
     path: '/search/:query',
-    Component: SearchPage
+    Component: LazySearchPage
   }
 ]
 
 function App() {
   return (
     <main>
-      <Router routes={appRoutes} defaultComponent={Page404}>
-        <Route path='/' Component={HomePage} />
-        <Route path='/about' Component={AboutPage} />
-      </Router>
+      <Suspense fallback={<h2>Loading...</h2>}>
+        <Router routes={appRoutes} defaultComponent={LazyPage404}>
+          <Route path='/' Component={LazyHomePage} />
+          <Route path='/about' Component={LazyAboutPage} />
+        </Router>
+      </Suspense>
     </main>
   )
 }

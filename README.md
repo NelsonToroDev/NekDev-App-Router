@@ -19,6 +19,6 @@ Create an app using React Router
     - ✅ Support a default route (404)
     - ✅ Suppport routes with parameters
     - ✅ <Route /> Component to make it declarative
-    - Lazy loading for routes
+    - ✅ Lazy loading for routes
     - Testing
     - Publish the package on NPM
