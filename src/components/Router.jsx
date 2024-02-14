@@ -1,18 +1,18 @@
-import { useState, useEffect } from 'react'
-import { EVENTS } from './consts'
+import { useState, useEffect, Children } from 'react'
+import { EVENTS } from '../utils/consts.js'
 import { match } from 'path-to-regexp'
-import { Children } from 'react'
+import { getCurrentPath } from '../utils/getCurrentPath.js'
 
 export default function Router({
   children,
   routes = [],
   defaultComponent: DefaultComponent = () => <h1>Error 404</h1>
 }) {
-  const [currentPath, setCurrentPath] = useState(window.location.pathname)
+  const [currentPath, setCurrentPath] = useState(getCurrentPath())
 
   useEffect(() => {
     const onLocationChange = () => {
-      setCurrentPath(window.location.pathname)
+      setCurrentPath(getCurrentPath())
     }
 
     window.addEventListener(EVENTS.PUSHEVENT, onLocationChange)

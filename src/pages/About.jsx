@@ -1,4 +1,4 @@
-import { Link } from '../Link'
+import { Link } from '../components/Link'
 
 console.log('We are loading about.jsx')
 
@@ -19,7 +19,7 @@ const useI18n = (lang) => {
   return i18n[lang] || i18n.en
 }
 
-export default function AboutPage ({ routeParams }) {
+export default function AboutPage({ routeParams }) {
   const i18n = useI18n(routeParams.lang ?? 'en')
 
   return (
