@@ -22,7 +22,7 @@ export function Link({ target, to, ...props }) {
 
     if (isMainEvent && isManageableEvent && !isModifiedEvent) {
       // avoid its default behaivior which is reaload all the resources on anchor ref
-      //event.preventDefault()
+      event.preventDefault()
       navigate(to) // Navigation with SPA
       window.scrollTo(0, 0)
     }

@@ -1,9 +1,9 @@
-import { useState, useEffect, Children } from 'react'
 import { EVENTS } from '../utils/consts.js'
+import { useState, useEffect, Children } from 'react'
 import { match } from 'path-to-regexp'
 import { getCurrentPath } from '../utils/getCurrentPath.js'
 
-export default function Router({
+export function Router({
   children,
   routes = [],
   defaultComponent: DefaultComponent = () => <h1>Error 404</h1>
@@ -15,12 +15,12 @@ export default function Router({
       setCurrentPath(getCurrentPath())
     }
 
-    window.addEventListener(EVENTS.PUSHEVENT, onLocationChange)
-    window.addEventListener(EVENTS.POPEVENT, onLocationChange)
+    window.addEventListener(EVENTS.PUSHSTATE, onLocationChange)
+    window.addEventListener(EVENTS.POPSTATE, onLocationChange)
 
     return () => {
-      window.removeEventListener(EVENTS.PUSHEVENT, onLocationChange)
-      window.removeEventListener(EVENTS.POPEVENT, onLocationChange)
+      window.removeEventListener(EVENTS.PUSHSTATE, onLocationChange)
+      window.removeEventListener(EVENTS.POPSTATE, onLocationChange)
     }
   }, [])
 

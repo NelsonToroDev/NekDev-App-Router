@@ -1,11 +1,11 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { render, screen, cleanup, fireEvent } from '@testing-library/react'
-import Router from '../src/components/Router.jsx'
-import Route from '../src/components/Route.jsx'
+import { Router } from '../src/components/Router.jsx'
+import { Route } from '../src/components/Route.jsx'
 import { getCurrentPath } from '../src/utils/getCurrentPath.js'
 import { Link } from '../src/components/Link.jsx'
 
-vi.mock('./utils/getCurrentPath.js', () => ({
+vi.mock('../src/utils/getCurrentPath.js', () => ({
   getCurrentPath: vi.fn()
 }))
 
@@ -15,33 +15,33 @@ describe('Router', () => {
     vi.clearAllMocks()
   })
 
-  // it('should render without problems', () => {
-  //   render(<Router routes={[]} />)
-  //   expect(true).toBeTruthy()
-  // })
+  it('should render without problems', () => {
+    render(<Router routes={[]} />)
+    expect(true).toBeTruthy()
+  })
 
-  // it('should render 404 is no routes match', () => {
-  //   render(<Router routes={[]} defaultComponent={() => <h1>404</h1>} />)
-  //   expect(screen.getByText('404')).toBeTruthy()
-  // })
+  it('should render 404 is no routes match', () => {
+    render(<Router routes={[]} defaultComponent={() => <h1>404</h1>} />)
+    expect(screen.getByText('404')).toBeTruthy()
+  })
 
-  // it('should render the component for the first matching in routes', () => {
-  //   getCurrentPath.mockReturnValue('/about')
+  it('should render the component for the first matching in routes', () => {
+    getCurrentPath.mockReturnValue('/about')
 
-  //   const routes = [
-  //     {
-  //       path: '/',
-  //       Component: () => <h1>Home</h1>
-  //     },
-  //     {
-  //       path: '/about',
-  //       Component: () => <h1>About</h1>
-  //     }
-  //   ]
+    const routes = [
+      {
+        path: '/',
+        Component: () => <h1>Home</h1>
+      },
+      {
+        path: '/about',
+        Component: () => <h1>About</h1>
+      }
+    ]
 
-  //   render(<Router routes={routes} />)
-  //   expect(screen.getByText('About')).toBeTruthy()
-  // })
+    render(<Router routes={routes} />)
+    expect(screen.getByText('About')).toBeTruthy()
+  })
 
   it('should navigate using Links', async () => {
     getCurrentPath.mockReturnValueOnce('/')
