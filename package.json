@@ -1,6 +1,6 @@
 {
   "name": "nekdev-router",
-  "version": "0.0.2",
+  "version": "0.0.8",
   "type": "module",
   "main": "lib/index.jsx",
   "module": "lib/index.jsx",
@@ -14,7 +14,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "prepare": "npm run test && swc src/components src/utils src/index.jsx -d lib",
+    "prepare": "npm run test && swc src/components src/utils src/index.jsx -d lib --strip-leading-paths",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "vitest run",
