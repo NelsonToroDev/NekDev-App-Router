@@ -1,4 +1,4 @@
-# NekDev App Router
+# NekDev Router
 
 React Technical Practice based on [MiduDev](https://midu.dev) course
 
@@ -21,5 +21,5 @@ Create an app using React Router
     - ✅ <Route /> Component to make it declarative
     - ✅ Lazy loading for routes
     - ✅ Support i18n
-    - Testing
-    - Publish the package on NPM
+    - ✅ Testing
+    - ✅ Publish the package on NPM

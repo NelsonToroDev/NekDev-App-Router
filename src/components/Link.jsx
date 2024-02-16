@@ -10,15 +10,10 @@ export function navigate(href) {
 
 export function Link({ target, to, ...props }) {
   const handleClick = (event) => {
-    console.log(event.button)
     const isMainEvent = event.button === BUTTONS.PRIMARY // primary click
     const isModifiedEvent =
       event.metaKey || event.altKey || event.ctrlKey || event.shiftKey
     const isManageableEvent = target === undefined || target === '_self'
-
-    console.log(
-      ` isMainEvent: ${isMainEvent} \n isManageableEvent: ${isManageableEvent} \n isModifiedEvent: ${isModifiedEvent}`
-    )
 
     if (isMainEvent && isManageableEvent && !isModifiedEvent) {
       // avoid its default behaivior which is reaload all the resources on anchor ref
